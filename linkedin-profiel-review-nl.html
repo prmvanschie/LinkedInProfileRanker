@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Profiel Review — Jonathan Warner Partners</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --pp-dark: #181628;
+    --pp-purple: #3900B5;
+    --pp-yellow: #F9C80E;
+    --pp-yellow-light: #fef9e0;
+    --pp-green: #22c55e;
+    --pp-orange: #f59e0b;
+    --pp-red: #ef4444;
+    --pp-gray: #64748b;
+    --pp-light: #f8fafc;
+    --pp-white: #ffffff;
+    --pp-border: #e2e8f0;
+    --pp-shadow: 0 4px 24px rgba(24,22,40,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--pp-white);
+    color: var(--pp-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #181628 0%, #1e1a3a 50%, #2a1f5e 100%);
+    color: white;
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(249,200,14,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(57,0,181,0.08) 0%, transparent 50%);
+    animation: heroGlow 8s ease-in-out infinite alternate;
+  }
+  @keyframes heroGlow {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-3%, 3%); }
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+  .hero-logo { height: 28px; margin-bottom: 32px; opacity: 0.9; display: block; margin-left: auto; margin-right: auto; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(249,200,14,0.15);
+    border: 1px solid rgba(249,200,14,0.3);
+    color: var(--pp-yellow);
+    padding: 6px 16px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero h1 { font-size: 2.6rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.5px; }
+  .hero h1 span { color: var(--pp-yellow); display: block; }
+  .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 600px; margin: 0 auto; font-weight: 300; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  .section {
+    padding: 60px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .section-label {
+    display: inline-block;
+    background: var(--pp-yellow-light);
+    color: var(--pp-purple);
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section h2 { font-size: 2rem; font-weight: 800; color: var(--pp-dark); margin-bottom: 8px; }
+  .section .subtitle { color: var(--pp-gray); font-size: 1rem; margin-bottom: 40px; }
+
+  .profile-card {
+    background: var(--pp-white);
+    border-radius: 12px;
+    box-shadow: var(--pp-shadow);
+    overflow: hidden;
+    margin-bottom: 48px;
+    border: 1px solid var(--pp-border);
+  }
+  .profile-banner { height: 180px; background-size: cover; background-position: center; }
+  .profile-header {
+    display: flex; align-items: flex-end; gap: 24px;
+    padding: 0 32px 24px; margin-top: -50px; position: relative;
+  }
+  .profile-photo {
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 4px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    object-fit: cover; flex-shrink: 0;
+  }
+  .profile-info { padding-bottom: 8px; }
+  .profile-name { font-size: 1.5rem; font-weight: 700; color: var(--pp-dark); }
+  .profile-headline { font-size: 0.9rem; color: var(--pp-gray); margin-top: 2px; }
+  .profile-badges { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 600;
+  }
+  .badge-yes { background: #dcfce7; color: #16a34a; }
+  .badge-no { background: #fef2f2; color: #dc2626; }
+  .badge-neutral { background: #f1f5f9; color: #64748b; }
+
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 14px; padding: 24px 32px 32px;
+  }
+  .score-item {
+    text-align: center; padding: 16px 8px;
+    border-radius: 12px; background: var(--pp-light); transition: transform 0.2s;
+  }
+  .score-item:hover { transform: translateY(-2px); }
+  .score-ring { width: 72px; height: 72px; margin: 0 auto 8px; position: relative; }
+  .score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .score-ring-bg { fill: none; stroke: #e2e8f0; stroke-width: 6; }
+  .score-ring-fill {
+    fill: none; stroke-width: 6; stroke-linecap: round;
+    stroke-dasharray: 188.5; stroke-dashoffset: 188.5;
+    transition: stroke-dashoffset 1.5s ease-out;
+  }
+  .score-ring .score-value {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem; font-weight: 800; color: var(--pp-dark);
+  }
+  .score-label {
+    font-size: 0.68rem; font-weight: 600; color: var(--pp-gray);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  .rec-list { padding: 0 32px 32px; }
+  .rec-item {
+    display: flex; gap: 16px; padding: 20px;
+    border-radius: 8px; margin-bottom: 12px;
+    border-left: 4px solid; background: var(--pp-light);
+    opacity: 0; transform: translateX(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .rec-item.visible { opacity: 1; transform: translateX(0); }
+  .rec-item.quick-win { border-color: var(--pp-green); }
+  .rec-item.important { border-color: var(--pp-yellow); }
+  .rec-item.strategic { border-color: var(--pp-purple); }
+  .rec-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .quick-win .rec-icon { background: #dcfce7; }
+  .important .rec-icon { background: var(--pp-yellow-light); }
+  .strategic .rec-icon { background: #ede5ff; }
+  .rec-content { flex: 1; }
+  .rec-tag {
+    font-size: 0.62rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;
+  }
+  .quick-win .rec-tag { color: var(--pp-green); }
+  .important .rec-tag { color: #d97706; }
+  .strategic .rec-tag { color: var(--pp-purple); }
+  .rec-title { font-size: 0.95rem; font-weight: 700; color: var(--pp-dark); margin-bottom: 4px; }
+  .rec-desc { font-size: 0.82rem; color: var(--pp-gray); line-height: 1.55; }
+  .rec-example {
+    margin-top: 8px; padding: 10px 14px;
+    background: white; border-radius: 8px;
+    border: 1px solid var(--pp-border);
+    font-size: 0.8rem; color: var(--pp-dark); font-style: italic;
+  }
+  .rec-example strong {
+    display: block; font-style: normal;
+    font-size: 0.65rem; color: var(--pp-purple);
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
+  }
+
+  .divider { height: 3px; background: linear-gradient(to right, transparent, var(--pp-yellow), transparent); }
+
+  .shared-section {
+    background: linear-gradient(135deg, #181628, #1e1a3a);
+    color: white; padding: 60px 0;
+  }
+  .shared-section h2 { color: white; }
+  .shared-section .subtitle { color: rgba(255,255,255,0.55); }
+  .shared-rec {
+    display: flex; gap: 16px; padding: 20px;
+    border-radius: 8px; margin-bottom: 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+    opacity: 0; transform: translateX(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .shared-rec.visible { opacity: 1; transform: translateX(0); }
+  .shared-rec .rec-icon { background: rgba(249,200,14,0.15); }
+  .shared-rec .rec-tag { color: var(--pp-yellow); }
+  .shared-rec .rec-title { color: white; }
+  .shared-rec .rec-desc { color: rgba(255,255,255,0.55); }
+
+  .overall-score { text-align: center; padding: 60px 0 80px; }
+  .big-score {
+    display: inline-flex; align-items: center; gap: 40px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .big-score-item { text-align: center; }
+  .big-score-ring { width: 160px; height: 160px; margin: 0 auto 16px; position: relative; }
+  .big-score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .big-score-ring .score-ring-bg { stroke-width: 8; }
+  .big-score-ring .score-ring-fill { stroke-width: 8; stroke-dasharray: 452.4; stroke-dashoffset: 452.4; }
+  .big-score-name { font-size: 1.1rem; font-weight: 700; color: var(--pp-dark); }
+  .big-score-label { font-size: 0.8rem; color: var(--pp-gray); }
+  .vs-badge { font-size: 1.5rem; font-weight: 900; color: var(--pp-border); padding: 0 8px; }
+
+  .footer {
+    text-align: center; padding: 40px;
+    background: var(--pp-dark); color: rgba(255,255,255,0.5); font-size: 0.75rem;
+  }
+  .footer a { color: var(--pp-yellow); text-decoration: none; }
+  .footer-logo { height: 20px; margin-bottom: 12px; opacity: 0.7; }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .hero { padding: 60px 24px 40px; }
+    .profile-header { flex-direction: column; align-items: center; text-align: center; padding: 0 20px 20px; }
+    .profile-photo { margin-top: 0; }
+    .scores-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 16px; }
+    .rec-list { padding: 0 16px 24px; }
+    .rec-item { flex-direction: column; gap: 8px; }
+    .big-score { gap: 24px; }
+    .vs-badge { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <img src="https://cdn.prod.website-files.com/642c360b17234e1a27800e23/64ba41fed6fe425eb90ad4ff_PERPETUUM.svg" alt="Perpetuum" class="hero-logo">
+    <div class="hero-badge">LinkedIn Profiel Review</div>
+    <h1>Jonathan Warner Partners:<br><span>Profiel Optimalisatie Rapport</span></h1>
+    <p>Een datagedreven analyse van beide partnerprofielen met concrete aanbevelingen op basis van LinkedIn best practices 2026.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section" id="rob-section">
+    <span class="section-label">Profiel 1</span>
+    <h2>Rob IJsseldijk</h2>
+    <p class="subtitle">Partner | Co-Owner bij Jonathan Warner</p>
+
+    <div class="profile-card">
+      <div class="profile-banner" style="background-image: url('https://media.licdn.com/dms/image/v2/D4D16AQHtpSyPkWgYOg/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1729687384582?e=1776902400&v=beta&t=7Bdgch85zdpqgmYP_hD7yOJuiEqGmLs5ay8kyCnVkTE');"></div>
+      <div class="profile-header">
+        <img src="https://media.licdn.com/dms/image/v2/D4E03AQEa7LnEiXnA1w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1683729938702?e=1776902400&v=beta&t=bOouGbv7NLLVxSAICTyAkK-RcvHMyyYf1R-CMGzIRf8" alt="Rob IJsseldijk" class="profile-photo">
+        <div class="profile-info">
+          <div class="profile-name">Rob IJsseldijk</div>
+          <div class="profile-headline">Partner @ Jonathan Warner | Strategy —> Execution | Leadership Teams that Deliver</div>
+          <div class="profile-badges">
+            <span class="badge badge-neutral">1.811 connecties</span>
+            <span class="badge badge-no">Geen Premium</span>
+            <span class="badge badge-no">Niet Geverifieerd</span>
+            <span class="badge badge-no">0 aanbevelingen</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scores-grid" id="rob-scores">
+        <div class="score-item"><div class="score-ring" data-score="6" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Foto</div></div>
+        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Banner</div></div>
+        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Headline</div></div>
+        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Over</div></div>
+        <div class="score-item"><div class="score-ring" data-score="4" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Ervaring</div></div>
+        <div class="score-item"><div class="score-ring" data-score="3" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Vaardigheden</div></div>
+        <div class="score-item"><div class="score-ring" data-score="2" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Activiteit</div></div>
+        <div class="score-item"><div class="score-ring" data-score="3" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Vertrouwen</div></div>
+      </div>
+
+      <div class="rec-list" id="rob-recs">
+        <div class="rec-item important">
+          <div class="rec-icon">&#9997;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Belangrijk</div>
+            <div class="rec-title">Headline: Maak het specifiek en vindbaar</div>
+            <div class="rec-desc">De huidige headline bestaat uit drie generieke uitspraken verbonden door pipes. "Leadership Teams that Deliver" vertelt bezoekers niet <em>wie</em> je helpt of <em>welk resultaat</em> je levert. Een sterke headline volgt de formule: Wie je helpt + Welk resultaat + Geloofwaardigheidssignaal.</div>
+            <div class="rec-example"><strong>Voorgestelde headline</strong>Partner @ Jonathan Warner | Ik help leiderschapsteams in ondernemersgeleide organisaties strategie omzetten in resultaat | Ex-Korps Mariniers</div>
+          </div>
+        </div>
+
+        <div class="rec-item quick-win">
+          <div class="rec-icon">&#9989;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Snel Resultaat</div>
+            <div class="rec-title">Over-sectie: Sterke opening, voeg nu een CTA toe</div>
+            <div class="rec-desc">"Strategy is about plans. Execution is about people." is een uitstekende openingszin, en het verhaal over het Korps Mariniers bouwt echte geloofwaardigheid op. Maar de sectie eindigt zonder call-to-action. Voeg 2 tot 3 regels toe onderaan die bezoekers vertellen hoe ze contact kunnen opnemen: een gesprek inplannen, een bericht sturen, of de website bezoeken.</div>
+            <div class="rec-example"><strong>Toevoegen aan het einde van je Over-sectie</strong>Benieuwd hoe jouw leiderschapsteam sneller kan schakelen? Laten we praten. Stuur me een bericht of plan een gesprek via jonathanwarner.nl</div>
+          </div>
+        </div>
+
+        <div class="rec-item important">
+          <div class="rec-icon">&#128221;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Belangrijk</div>
+            <div class="rec-title">Ervaring: Vervang bedrijfsteksten door persoonlijke impact</div>
+            <div class="rec-desc">Van de 12 vermelde functies hebben de meeste geen beschrijving of gebruiken een gekopieerde bedrijfsomschrijving. De huidige Jonathan Warner tekst is identiek aan die van Roeland. Het leest als een brochure, niet als een persoonlijk verhaal. Elke functie zou <em>jouw</em> specifieke bijdragen en meetbare resultaten moeten benadrukken. Dit geldt vooral voor de functies bij het Korps Mariniers, die een krachtig onderscheidend vermogen vertegenwoordigen dat momenteel onbenut blijft.</div>
+            <div class="rec-example"><strong>Voorbeeld voor een Mariniers functie</strong>Leiding gegeven aan een Fire Support Team tijdens operationele inzet, waarbij ik gezamenlijke vuursteun co&ouml;rdineerde voor gevechtsoperaties. Een team van 6 specialisten aangestuurd onder hoge druk, waarbij ik de leiderschapsprincipes ontwikkelde die ik nu toepas in zakelijke transformaties.</div>
+          </div>
+        </div>
+
+        <div class="rec-item strategic">
+          <div class="rec-icon">&#127919;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Strategisch</div>
+            <div class="rec-title">Vaardigheden: Herbouw rondom wat klanten zoeken</div>
+            <div class="rec-desc">De huidige vaardighedenlijst mixt relevante termen (Leadership Development, Coaching) met termen die niet goed werken als doorzoekbare vaardigheden (Afghanistan, Pragmatic, Command). Vervang deze door termen die je doelgroep daadwerkelijk intypt in LinkedIn zoekopdrachten: Executive Coaching, Board Advisory, Team Effectiveness, Leadership Assessment, Strategic Alignment, Organisational Change.</div>
+          </div>
+        </div>
+
+        <div class="rec-item quick-win">
+          <div class="rec-icon">&#128274;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Snel Resultaat</div>
+            <div class="rec-title">Laat je verifi&euml;ren en overweeg Premium</div>
+            <div class="rec-desc">De geverifieerde badge van LinkedIn bouwt direct vertrouwen op en wordt steeds vaker gebruikt als filter door recruiters en opdrachtgevers. Roeland heeft al zowel Premium als Verificatie. Als partners bij hetzelfde bureau versterken consistente vertrouwenssignalen het gezamenlijke merk. Verificatie duurt een paar minuten en is gratis.</div>
+          </div>
+        </div>
+
+        <div class="rec-item important">
+          <div class="rec-icon">&#11088;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Belangrijk</div>
+            <div class="rec-title">Verzamel aanbevelingen van klanten en collega's</div>
+            <div class="rec-desc">Het profiel heeft momenteel nul aanbevelingen. Voor iemand die nauw samenwerkt met leiderschapsteams is social proof van eerdere klanten een van de sterkste vertrouwenssignalen op LinkedIn. Richt je op 3 tot 5 aanbevelingen die spreken over specifieke resultaten die je hebt helpen realiseren.</div>
+          </div>
+        </div>
+
+        <div class="rec-item strategic">
+          <div class="rec-icon">&#127891;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Strategisch</div>
+            <div class="rec-title">Voeg relevante certificeringen en licenties toe</div>
+            <div class="rec-desc">De sectie Licenties & Certificeringen is leeg. Als je coaching certificeringen hebt (ICF, Hogan, MBTI en dergelijke), assessment kwalificaties of leiderschapsontwikkelingscredentials, dan verbeteren deze zowel geloofwaardigheid als vindbaarheid. De Verified Skills badges van LinkedIn zijn ook de moeite waard om na te streven.</div>
+          </div>
+        </div>
+
+        <div class="rec-item strategic">
+          <div class="rec-icon">&#128172;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Strategisch</div>
+            <div class="rec-title">Begin met content delen, al is het eens per maand</div>
+            <div class="rec-desc">Er zijn geen recente berichten of artikelen zichtbaar. Het LinkedIn algoritme van 2026 beloont actieve profielen en thematische consistentie. Zelfs &eacute;&eacute;n bericht per maand over leiderschap, teamdynamiek of lessen uit de Mariniers zou expertise signaleren en het profiel zichtbaar houden. Documentberichten (carrousels) genereren 2 tot 3 keer meer betrokkenheid dan platte tekst.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="container">
+  <div class="section" id="roeland-section">
+    <span class="section-label">Profiel 2</span>
+    <h2>Roeland van Schaik</h2>
+    <p class="subtitle">Partner bij Jonathan Warner</p>
+
+    <div class="profile-card">
+      <div class="profile-banner" style="background-image: url('https://media.licdn.com/dms/image/v2/D4E16AQEkvCHVK5xGew/profile-displaybackgroundimage-shrink_350_1400/B4EZx6tCMyJsAY-/0/1771585153242?e=1776902400&v=beta&t=0hbz0LwS-Mu66yWpRDUuruzLVGWj2Yiu_ipUB0JxLnE');"></div>
+      <div class="profile-header">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQE6E0NHlj2Tsw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1701349510562?e=1776902400&v=beta&t=M8MsQDf_Qw76d7Mn8KY1yGkmzi3SWfik6p2qtNUTqUM" alt="Roeland van Schaik" class="profile-photo">
+        <div class="profile-info">
+          <div class="profile-name">Roeland van Schaik</div>
+          <div class="profile-headline">Partner @ Jonathan Warner | PE & Transformation | building teams | powered by creativity.</div>
+          <div class="profile-badges">
+            <span class="badge badge-neutral">2.440 connecties</span>
+            <span class="badge badge-yes">Premium</span>
+            <span class="badge badge-yes">Geverifieerd</span>
+            <span class="badge badge-no">1 aanbeveling</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scores-grid" id="roeland-scores">
+        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Foto</div></div>
+        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Banner</div></div>
+        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Headline</div></div>
+        <div class="score-item"><div class="score-ring" data-score="4" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Over</div></div>
+        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Ervaring</div></div>
+        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Vaardigheden</div></div>
+        <div class="score-item"><div class="score-ring" data-score="3" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Activiteit</div></div>
+        <div class="score-item"><div class="score-ring" data-score="6" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Vertrouwen</div></div>
+      </div>
+
+      <div class="rec-list" id="roeland-recs">
+        <div class="rec-item important">
+          <div class="rec-icon">&#9997;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Belangrijk</div>
+            <div class="rec-title">Headline: Vervang "powered by creativity" door concrete waarde</div>
+            <div class="rec-desc">"Powered by creativity" klinkt als een merkslogan, maar helpt potenti&euml;le klanten of connecties niet om te begrijpen wat je doet. De PE & Transformation invalshoek is sterk en onderscheidend. Ga daar dieper op in. Gebruik de headline om je unieke achtergrond (rechten, PwC, HAL Investments, PE) te verbinden met het resultaat dat je levert.</div>
+            <div class="rec-example"><strong>Voorgestelde headline</strong>Partner @ Jonathan Warner | Hands-on met PE-backed leiderschapsteams | Van strategie naar prestatie | PwC & HAL Investments achtergrond</div>
+          </div>
+        </div>
+
+        <div class="rec-item important">
+          <div class="rec-icon">&#128196;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Belangrijk</div>
+            <div class="rec-title">Over-sectie: Breid uit van 34 woorden naar 200 tot 300</div>
+            <div class="rec-desc">De huidige Over-sectie telt slechts 34 woorden: "Private Equity funds ambition. People Equity is scarce. Teams deliver outcomes." Het is slim woordspel, maar bezoekers blijven achter zonder antwoorden op de kernvragen: met wie werk je, wat doe je precies, welke resultaten heb je behaald, en hoe kunnen ze je bereiken? LinkedIn geeft je 2.600 tekens. Minder dan 2% gebruiken is een gemiste kans. Behoud de sterke opening, voeg dan inhoud toe.</div>
+            <div class="rec-example"><strong>Voorgestelde structuur</strong>[Behoud huidige opening]<br><br>In ruim 30 jaar heb ik gewerkt op het snijvlak van mensen en prestatie, van PwC en HAL Investments tot PE-backed scale-ups en familiebedrijven. Vandaag werk ik bij Jonathan Warner hands-on met leiderschapsteams die navigeren door transformatie, integratie en groei.<br><br>Wat ik breng: [2 tot 3 specifieke punten]<br><br>Laten we verbinden: [CTA met e-mail of website]</div>
+          </div>
+        </div>
+
+        <div class="rec-item important">
+          <div class="rec-icon">&#128221;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Belangrijk</div>
+            <div class="rec-title">Ervaring: Schrijf over jouw impact, niet over bedrijfsomschrijvingen</div>
+            <div class="rec-desc">Elke ervaringsvermelding beschrijft wat het <em>bedrijf</em> doet in plaats van wat <em>jij</em> daar hebt bereikt. De TrueKinetix vermelding leest bijvoorbeeld als een productbrochure over indoor fietsen. Vervang bedrijfsomschrijvingen door jouw persoonlijke bijdragen: opgebouwde teams, opgeloste uitdagingen, behaalde resultaten. Gebruik waar mogelijk cijfers.</div>
+            <div class="rec-example"><strong>Voorbeeld voor HAL Investments</strong>Verantwoordelijk voor werving en assessment van het HAL investeringsteam en sourcing van board-level talent voor meer dan 15 portfoliobedrijven. Leidde hands-on transformatieopdrachten in het portfolio, van herstructurering en organisatieontwerp tot het opbouwen van commerci&euml;le teams bij buy-and-build strategie&euml;n.</div>
+          </div>
+        </div>
+
+        <div class="rec-item strategic">
+          <div class="rec-icon">&#127912;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Strategisch</div>
+            <div class="rec-title">Creatief werk: Zet het bewust in de etalage of scheid het</div>
+            <div class="rec-desc">De rol "Tegenlichtjager" bij De Lichtjagers (visueel verhalencollectief) en "Singer-songwriter" bij Vaardigheden tonen een oprecht creatieve kant. Dit kan een echt onderscheidend vermogen zijn in de advieswereld, maar momenteel staat het zonder context. Overweeg om het bewust uit te lichten: gebruik de Uitgelicht-sectie om een filmproject vast te pinnen, of schrijf een alinea in de Over-sectie die creativiteit verbindt met hoe je leiderschapswerk benadert. Als het persoonlijk is en los staat van je advieswerk, overweeg dan of het op dit profiel thuishoort.</div>
+          </div>
+        </div>
+
+        <div class="rec-item quick-win">
+          <div class="rec-icon">&#127919;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Snel Resultaat</div>
+            <div class="rec-title">Vaardigheden: Prioriteer klantgerichte zoektermen</div>
+            <div class="rec-desc">Je vaardighedenlijst bevat sterke termen (M&A, Change Management, Restructuring) naast minder doorzoekbare termen. Herorden zodat de meest relevante vaardigheden bovenaan staan: Private Equity, Leadership Team Development, Transformation, Executive Assessment, M&A Integration, Organisational Design. Dit zijn de termen die beslissers zoeken wanneer ze partners zoals jij zoeken.</div>
+          </div>
+        </div>
+
+        <div class="rec-item quick-win">
+          <div class="rec-icon">&#11088;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Snel Resultaat</div>
+            <div class="rec-title">Verzamel meer aanbevelingen</div>
+            <div class="rec-desc">E&eacute;n aanbeveling (uit 2016) over een carri&egrave;re van 31 jaar weerspiegelt niet je ervaringsniveau. Benader 3 tot 5 recente klanten of collega's en vraag om specifieke, resultaatgerichte aanbevelingen. Deze hebben aanzienlijk gewicht bij profielbezoekers die overwegen om met je samen te werken.</div>
+          </div>
+        </div>
+
+        <div class="rec-item strategic">
+          <div class="rec-icon">&#128204;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Strategisch</div>
+            <div class="rec-title">Gebruik de Uitgelicht-sectie voor geloofwaardigheidsmateriaal</div>
+            <div class="rec-desc">De Uitgelicht-sectie is eersteklas vastgoed op je profiel en verschijnt prominent bovenaan. Pin je beste content: een klantcase, een Jonathan Warner artikel, een film van De Lichtjagers, of een thought leadership bericht. Dit is de plek waar je de "creativiteit" die je headline belooft visueel tot leven kunt brengen.</div>
+          </div>
+        </div>
+
+        <div class="rec-item strategic">
+          <div class="rec-icon">&#127891;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Strategisch</div>
+            <div class="rec-title">Benut je opleiding in je positionering</div>
+            <div class="rec-desc">Twee MBA's (Nyenrode + Rochester Simon), een rechtendiploma van Leiden, en een Six Sigma Black Belt van PwC staan allemaal vermeld maar worden nergens genoemd in de headline of Over-sectie. Deze credentials versterken je positionering, vooral in PE contexten waar grondigheid telt. Verwijs ernaar in je Over-sectie als bewijspunten.</div>
+          </div>
+        </div>
+
+        <div class="rec-item strategic">
+          <div class="rec-icon">&#128172;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Strategisch</div>
+            <div class="rec-title">Begin met een consistent contentritme</div>
+            <div class="rec-desc">Er zijn geen recente berichten of artikelen zichtbaar. Met 31 jaar ervaring in rechten, PE, advieswerk en creatief werk heb je een uniek perspectief dat het delen waard is. Het LinkedIn algoritme van 2026 beloont profielen die consistent posten over 1 tot 2 onderwerpen. Zelfs tweewekelijkse berichten over PE gerelateerde leiderschapsuitdagingen zouden je positioneren als thought leader in een nichemarkt.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="shared-section">
+  <div class="container">
+    <div class="section" id="shared-section" style="padding-top: 0;">
+      <span class="section-label" style="background: rgba(249,200,14,0.15); color: #F9C80E;">Beide Partners</span>
+      <h2>Gezamenlijke Aanbevelingen</h2>
+      <p class="subtitle">Kansen om het Jonathan Warner merk te versterken via beide profielen.</p>
+
+      <div id="shared-recs">
+        <div class="shared-rec">
+          <div class="rec-icon">&#129309;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Merkafstemming</div>
+            <div class="rec-title">Stem af op &eacute;&eacute;n Jonathan Warner bedrijfsomschrijving</div>
+            <div class="rec-desc">Beide profielen gebruiken dezelfde gekopieerde bedrijfsomschrijving voor Jonathan Warner, maar geen van beide personaliseert deze. Maak &eacute;&eacute;n verzorgde bedrijfsomschrijving voor de LinkedIn bedrijfspagina, en laat elke partner een eigen rolbeschrijving schrijven die hun unieke invalshoek en bijdragen benadrukt.</div>
+          </div>
+        </div>
+
+        <div class="shared-rec">
+          <div class="rec-icon">&#128260;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Merkafstemming</div>
+            <div class="rec-title">Beveel elkaar aan</div>
+            <div class="rec-desc">Geen van beide partners heeft de ander aanbevolen op LinkedIn. Een wederzijdse aanbeveling tussen mede-eigenaren, die elkaars complementaire krachten benoemt, signaleert een sterk partnerschap en bouwt vertrouwen op bij potenti&euml;le klanten die een van beide profielen bekijken.</div>
+          </div>
+        </div>
+
+        <div class="shared-rec">
+          <div class="rec-icon">&#128221;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Contentstrategie</div>
+            <div class="rec-title">Ontwikkel een gezamenlijk contentritme</div>
+            <div class="rec-desc">Geen van beide partners post momenteel. Een eenvoudig plan waarbij elke partner twee keer per maand post over hun expertisegebied en reageert op elkaars berichten zou samengestelde zichtbaarheid cre&euml;ren voor Jonathan Warner. Rob zou zich kunnen richten op lessen van militair naar zakelijk leiderschap; Roeland op PE transformatieverhalen.</div>
+          </div>
+        </div>
+
+        <div class="shared-rec">
+          <div class="rec-icon">&#128202;</div>
+          <div class="rec-content">
+            <div class="rec-tag">Snel Resultaat</div>
+            <div class="rec-title">Differentieer jullie headline invalshoeken</div>
+            <div class="rec-desc">Beide headlines beginnen identiek met "Partner @ Jonathan Warner" maar wijken dan af naar generiek terrein. Elke partner zou een eigen invalshoek moeten claimen: Rob als de militair leiderschap en executie expert, Roeland als de PE en transformatie specialist. Zo dekt het bureau meer zoekterrein en vertelt elk profiel een uniek verhaal terwijl het hetzelfde merk versterkt.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section overall-score" id="overall-section">
+    <span class="section-label">Totaal</span>
+    <h2>Profiel Gereedheid Score</h2>
+    <p class="subtitle" style="margin-bottom: 48px;">Hoe goed elk profiel is geoptimaliseerd voor zichtbaarheid, vertrouwen en conversie in 2026.</p>
+
+    <div class="big-score">
+      <div class="big-score-item">
+        <div class="big-score-ring" data-score="46" data-max="100">
+          <svg viewBox="0 0 160 160"><circle class="score-ring-bg" cx="80" cy="80" r="72"/><circle class="score-ring-fill" cx="80" cy="80" r="72" data-color="#F9C80E"/></svg>
+          <span class="score-value" style="font-size:2.5rem; font-weight:900; position:absolute; top:44%; left:50%; transform:translate(-50%,-50%); color: var(--pp-dark);">0</span>
+          <span style="position:absolute; top:60%; left:50%; transform:translateX(-50%); color: var(--pp-gray); font-size:0.85rem;">/100</span>
+        </div>
+        <div class="big-score-name">Rob IJsseldijk</div>
+        <div class="big-score-label">Ruimte om te groeien</div>
+      </div>
+
+      <div class="vs-badge">&</div>
+
+      <div class="big-score-item">
+        <div class="big-score-ring" data-score="53" data-max="100">
+          <svg viewBox="0 0 160 160"><circle class="score-ring-bg" cx="80" cy="80" r="72"/><circle class="score-ring-fill" cx="80" cy="80" r="72" data-color="#F9C80E"/></svg>
+          <span class="score-value" style="font-size:2.5rem; font-weight:900; position:absolute; top:44%; left:50%; transform:translate(-50%,-50%); color: var(--pp-dark);">0</span>
+          <span style="position:absolute; top:60%; left:50%; transform:translateX(-50%); color: var(--pp-gray); font-size:0.85rem;">/100</span>
+        </div>
+        <div class="big-score-name">Roeland van Schaik</div>
+        <div class="big-score-label">Ruimte om te groeien</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <img src="https://cdn.prod.website-files.com/642c360b17234e1a27800e23/64ba41fed6fe425eb90ad4ff_PERPETUUM.svg" alt="Perpetuum" class="footer-logo"><br>
+  Analyse op basis van LinkedIn optimalisatie best practices (2026) &middot; Opgesteld door <a href="https://perpetuum.agency">Perpetuum</a> voor Jonathan Warner
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        const rings = entry.target.querySelectorAll('.score-ring, .big-score-ring');
+        rings.forEach((ring, i) => { setTimeout(() => animateRing(ring), i * 120); });
+        const recs = entry.target.querySelectorAll('.rec-item, .shared-rec');
+        recs.forEach((rec, i) => { setTimeout(() => rec.classList.add('visible'), 200 + i * 100); });
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+  function animateRing(ring) {
+    const score = parseInt(ring.dataset.score);
+    const max = parseInt(ring.dataset.max);
+    const fill = ring.querySelector('.score-ring-fill');
+    const valueEl = ring.querySelector('.score-value');
+    const color = fill.dataset.color;
+    const r = parseFloat(fill.getAttribute('r'));
+    const circumference = 2 * Math.PI * r;
+    const offset = circumference * (1 - score / max);
+    fill.style.stroke = color;
+    fill.style.strokeDasharray = circumference;
+    fill.style.strokeDashoffset = circumference;
+    requestAnimationFrame(() => {
+      fill.style.transition = 'stroke-dashoffset 1.2s ease-out';
+      fill.style.strokeDashoffset = offset;
+    });
+    let current = 0;
+    const duration = 1200;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      current = Math.round(eased * score);
+      valueEl.textContent = current;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+</script>
+
+</body>
+</html>
