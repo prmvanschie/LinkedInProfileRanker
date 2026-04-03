@@ -153,6 +153,16 @@
     font-size: 0.68rem; font-weight: 600; color: var(--pp-gray);
     text-transform: uppercase; letter-spacing: 0.5px;
   }
+  .score-explain {
+    font-size: 0.65rem; color: var(--pp-gray); line-height: 1.4;
+    margin-top: 4px; opacity: 0.8;
+  }
+  .scores-intro {
+    padding: 16px 32px 0;
+    font-size: 0.82rem;
+    color: var(--pp-gray);
+    line-height: 1.5;
+  }
 
   .rec-list { padding: 0 32px 32px; }
   .rec-item {
@@ -286,15 +296,16 @@
         </div>
       </div>
 
+      <div class="scores-intro">Elk onderdeel van het profiel is beoordeeld op een schaal van 1 tot 10, op basis van LinkedIn best practices 2026.</div>
       <div class="scores-grid" id="rob-scores">
-        <div class="score-item"><div class="score-ring" data-score="6" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Foto</div></div>
-        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Banner</div></div>
-        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Headline</div></div>
-        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Over</div></div>
-        <div class="score-item"><div class="score-ring" data-score="4" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Ervaring</div></div>
-        <div class="score-item"><div class="score-ring" data-score="3" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Vaardigheden</div></div>
-        <div class="score-item"><div class="score-ring" data-score="2" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Activiteit</div></div>
-        <div class="score-item"><div class="score-ring" data-score="3" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Vertrouwen</div></div>
+        <div class="score-item"><div class="score-ring" data-score="6" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Foto</div><div class="score-explain">Professioneel, maar kan sterker qua framing</div></div>
+        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Banner</div><div class="score-explain">Aanwezig en relevant, goed gebruikt</div></div>
+        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Headline</div><div class="score-explain">Te generiek, mist doelgroep en concreet resultaat</div></div>
+        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Over</div><div class="score-explain">Sterke opening, maar geen call-to-action</div></div>
+        <div class="score-item"><div class="score-ring" data-score="4" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Ervaring</div><div class="score-explain">Meeste functies missen beschrijvingen of gebruiken bedrijfstekst</div></div>
+        <div class="score-item"><div class="score-ring" data-score="3" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Vaardigheden</div><div class="score-explain">Bevat niet-doorzoekbare termen als vaardigheden</div></div>
+        <div class="score-item"><div class="score-ring" data-score="2" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Activiteit</div><div class="score-explain">Geen zichtbare berichten of artikelen</div></div>
+        <div class="score-item"><div class="score-ring" data-score="3" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Vertrouwen</div><div class="score-explain">Geen Premium, geen verificatie, nul aanbevelingen</div></div>
       </div>
 
       <div class="rec-list" id="rob-recs">
@@ -401,15 +412,16 @@
         </div>
       </div>
 
+      <div class="scores-intro">Elk onderdeel van het profiel is beoordeeld op een schaal van 1 tot 10, op basis van LinkedIn best practices 2026.</div>
       <div class="scores-grid" id="roeland-scores">
-        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Foto</div></div>
-        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Banner</div></div>
-        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Headline</div></div>
-        <div class="score-item"><div class="score-ring" data-score="4" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Over</div></div>
-        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Ervaring</div></div>
-        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Vaardigheden</div></div>
-        <div class="score-item"><div class="score-ring" data-score="3" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Activiteit</div></div>
-        <div class="score-item"><div class="score-ring" data-score="6" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Vertrouwen</div></div>
+        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Foto</div><div class="score-explain">Professioneel en benaderbaar, goede kwaliteit</div></div>
+        <div class="score-item"><div class="score-ring" data-score="7" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#22c55e"/></svg><span class="score-value">0</span></div><div class="score-label">Banner</div><div class="score-explain">Recent bijgewerkt, visueel sterk</div></div>
+        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Headline</div><div class="score-explain">"Powered by creativity" is vaag, mist concrete waarde</div></div>
+        <div class="score-item"><div class="score-ring" data-score="4" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Over</div><div class="score-explain">Slechts 34 woorden, mist inhoud en CTA</div></div>
+        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Ervaring</div><div class="score-explain">Beschrijvingen gaan over bedrijven, niet over persoonlijke impact</div></div>
+        <div class="score-item"><div class="score-ring" data-score="5" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Vaardigheden</div><div class="score-explain">Goede mix, maar volgorde kan beter afgestemd op zoekgedrag</div></div>
+        <div class="score-item"><div class="score-ring" data-score="3" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#ef4444"/></svg><span class="score-value">0</span></div><div class="score-label">Activiteit</div><div class="score-explain">Geen zichtbare berichten of artikelen</div></div>
+        <div class="score-item"><div class="score-ring" data-score="6" data-max="10"><svg viewBox="0 0 72 72"><circle class="score-ring-bg" cx="36" cy="36" r="30"/><circle class="score-ring-fill" cx="36" cy="36" r="30" data-color="#F9C80E"/></svg><span class="score-value">0</span></div><div class="score-label">Vertrouwen</div><div class="score-explain">Premium en geverifieerd, maar slechts 1 aanbeveling</div></div>
       </div>
 
       <div class="rec-list" id="roeland-recs">
